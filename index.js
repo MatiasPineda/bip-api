@@ -79,7 +79,7 @@ console.log('API is running on http://localhost:3000');
 module.exports = app;
  */
 router
-  .route('bip/v1/:n')
+  .route('/bip/v1/:n')
   .get(getBip);
 
 module.exports = router;
