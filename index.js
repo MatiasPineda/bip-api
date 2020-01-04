@@ -3,9 +3,12 @@ const request = require('request');
 const cheerio = require('cheerio');
 const app     = express();
 
+const router = express.Router();
+
+
 //http://pocae.tstgo.cl/PortalCAE-WAR-MODULE/SesionPortalServlet?accion=6&NumDistribuidor=99&NomUsuario=usuInternet&NomHost=AFT&NomDominio=aft.cl&Trx=&RutUsuario=0&NumTarjeta=2000&bloqueable=
 
-app.get('/', function(req, res) {
+let getBip = app.get('/', function(req, res) {
     let n = req.query.n;
 
     let url = 'http://pocae.tstgo.cl/PortalCAE-WAR-MODULE/SesionPortalServlet?' +
@@ -69,9 +72,16 @@ app.get('/', function(req, res) {
         res.send(json);
     });
 });
+
+/*
 app.listen('3000');
 console.log('API is running on http://localhost:3000');
 module.exports = app;
+ */
+router
+  .route('bip/v1/:n')
+  .get(getBip);
 
+module.exports = router;
 
 
