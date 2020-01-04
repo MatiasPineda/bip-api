@@ -7,7 +7,7 @@ const app     = express();
 
 //http://pocae.tstgo.cl/PortalCAE-WAR-MODULE/SesionPortalServlet?accion=6&NumDistribuidor=99&NomUsuario=usuInternet&NomHost=AFT&NomDominio=aft.cl&Trx=&RutUsuario=0&NumTarjeta=2000&bloqueable=
 
-app.get('/', function(req, res) {
+app.get('/bip', function(req, res) {
     let n = req.query.n;
 
     let url = 'http://pocae.tstgo.cl/PortalCAE-WAR-MODULE/SesionPortalServlet?' +
@@ -73,6 +73,7 @@ app.get('/', function(req, res) {
 });
 
 
+app.listen('3000');
 console.log('API is running on http://localhost:3000');
 module.exports = app;
 
