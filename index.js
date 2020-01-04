@@ -33,7 +33,7 @@ app.get('/', function(req, res) {
                 data.push($(this).text());
             });
         }
-        console.log(data);
+        //console.log(data);
 
         const numeroTarjeta = ()=> {if (isNaN(n)){return 'inválido'} else {return parseInt(n)}};
         const estadoContrato = data[3];
@@ -55,8 +55,6 @@ app.get('/', function(req, res) {
         const fechaVencimiento= () =>{if(data.length>11){return data[11]}};
         const valida = () => {return typeof (data[3]) == "string";};
 
-        console.log(tipoContrato()[0]===undefined);
-
         let json = {
             numeroTarjeta: numeroTarjeta(),
             valida: valida(),
@@ -67,24 +65,13 @@ app.get('/', function(req, res) {
             fechaVencimiento: fechaVencimiento(),
             tipoContrato: tipoContrato()
         };
-        console.log(json);
+        //console.log(json);
         res.send(json);
     });
 });
 
-/*
-app.listen('3000');
-console.log('API is running on http://localhost:3000');
- */
+
 app.listen( app.get( 'port' ), function() {
     console.log( 'Node server is running on port ' + app.get( 'port' ));
 });
 module.exports = app;
-
-/*
-router
-  .route('/bip/v1/:n')
-  .get();
-
-module.exports = router;
-*/
