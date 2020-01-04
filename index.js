@@ -51,13 +51,13 @@ app.get('/', function(req, res) {
         };
         const vencimientoCuotasTransporte = () =>{if(data.length>11){return data[9]}};
         const fechaVencimiento= () =>{if(data.length>11){return data[11]}};
-        const valida1 = () => {return typeof (data[3]) == "string";};
+        const valida = () => {return typeof (data[3]) == "string";};
 
         console.log(tipoContrato()[0]===undefined);
 
         let json = {
             numeroTarjeta: numeroTarjeta,
-            valida: valida1(),
+            valida: valida(),
             estadoContrato: estadoContrato,
             saldo: saldo,
             fechaSaldo: fechaSaldo,
