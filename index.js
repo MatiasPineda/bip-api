@@ -3,12 +3,11 @@ const request = require('request');
 const cheerio = require('cheerio');
 const app     = express();
 
-const router = express.Router();
 
 
 //http://pocae.tstgo.cl/PortalCAE-WAR-MODULE/SesionPortalServlet?accion=6&NumDistribuidor=99&NomUsuario=usuInternet&NomHost=AFT&NomDominio=aft.cl&Trx=&RutUsuario=0&NumTarjeta=2000&bloqueable=
 
-let getBip = app.get('/', function(req, res) {
+app.get('/', function(req, res) {
     let n = req.query.n;
 
     let url = 'http://pocae.tstgo.cl/PortalCAE-WAR-MODULE/SesionPortalServlet?' +
@@ -36,7 +35,7 @@ let getBip = app.get('/', function(req, res) {
         }
         console.log(data);
 
-        const numeroTarjeta = parseInt(n);
+        const numeroTarjeta = ()=> {if (isNaN(n)){return 'inválido'} else {return parseInt(n)}};
         const estadoContrato = data[3];
         const saldo = data[5];
         const fechaSaldo = data[7];
@@ -59,7 +58,7 @@ let getBip = app.get('/', function(req, res) {
         console.log(tipoContrato()[0]===undefined);
 
         let json = {
-            numeroTarjeta: numeroTarjeta,
+            numeroTarjeta: numeroTarjeta(),
             valida: valida(),
             estadoContrato: estadoContrato,
             saldo: saldo,
@@ -73,15 +72,15 @@ let getBip = app.get('/', function(req, res) {
     });
 });
 
-/*
+
 app.listen('3000');
 console.log('API is running on http://localhost:3000');
 module.exports = app;
- */
+
+/*
 router
   .route('/bip/v1/:n')
-  .get(getBip);
+  .get();
 
 module.exports = router;
-
-
+*/
